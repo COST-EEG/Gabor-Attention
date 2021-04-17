@@ -117,6 +117,8 @@ def display_stimulus(exp, loop, trial):
     gabor.ori = ori
     gabor.pos = pos
     
+    
+    ###CUE###
     cuecentral = exp['cuecentral']
     cueno = exp['cueno']
     cuelocation = exp['cuelocation']
@@ -128,7 +130,7 @@ def display_stimulus(exp, loop, trial):
     cueDuration = exp['cueDur']
     cuelocation.pos = cuepos
 
-    conditionlist = (trial['condition'])
+    conditionlist = list(trial['condition'])
     cueDuration = get_frames(exp, cueDuration)
 
     try:
