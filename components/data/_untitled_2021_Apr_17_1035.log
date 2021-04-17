@@ -1,0 +1,27 @@
+0.7560 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).
+3.8834 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+4.3539 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([0., 0., 0.]), colorSpace='rgb', depthBits=8, fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x0000025F9C0088D0>, gamma=None, gammaErrorPolicy='raise', kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x0000025F9BF96828>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stencilBits=0, stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+4.3542 	EXP 	window1: mouseVisible = True
+4.3542 	EXP 	window1: recordFrameIntervals = False
+4.3592 	EXP 	window1: recordFrameIntervals = True
+4.3637 	WARNING 	t of last frame was 1.17ms (=1/856)
+4.3643 	WARNING 	t of last frame was 0.59ms (=1/1687)
+4.3654 	WARNING 	t of last frame was 1.09ms (=1/921)
+4.3665 	WARNING 	t of last frame was 1.09ms (=1/920)
+4.3666 	EXP 	window1: recordFrameIntervals = False
+4.5746 	EXP 	Created polygon = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, contrast=1.0, depth=0.0, fillColor=array([1., 1., 1.]), fillColorSpace='rgb', interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineWidth=0.1, name='polygon', opacity=0.1, ori=array(0.), pos=array([0., 0.]), size=array([0.1, 0.1]), units='height', vertices=ndarray(...), win=Window(...), windingRule=None)
+4.6607 	EXP 	polygon: autoDraw = True
+5.5776 	EXP 	polygon: autoDraw = False
+5.5907 	EXP 	window1: mouseVisible = True
+0.7310 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).
+4.0130 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+4.6790 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([0., 0., 0.]), colorSpace='rgb', depthBits=8, fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x000001F4499A8940>, gamma=None, gammaErrorPolicy='raise', kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x000001F449936898>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stencilBits=0, stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+4.6793 	EXP 	window1: mouseVisible = True
+4.6793 	EXP 	window1: recordFrameIntervals = False
+4.6892 	EXP 	window1: recordFrameIntervals = True
+4.6958 	WARNING 	t of last frame was 3.12ms (=1/320)
+4.7015 	EXP 	window1: recordFrameIntervals = False
+4.9226 	EXP 	Created polygon = ShapeStim(__class__=<class 'psychopy.visual.shape.ShapeStim'>, autoDraw=False, autoLog=True, closeShape=True, contrast=1.0, depth=0.0, fillColor=array([1., 1., 1.]), fillColorSpace='rgb', interpolate=True, lineColor=array([1., 1., 1.]), lineColorSpace='rgb', lineWidth=0.01, name='polygon', opacity=1.0, ori=array(0.), pos=array([0., 0.]), size=array([0.01, 0.01]), units='height', vertices=ndarray(...), win=Window(...), windingRule=None)
+4.9476 	EXP 	polygon: autoDraw = True
+5.9248 	EXP 	polygon: autoDraw = False
+5.9384 	EXP 	window1: mouseVisible = True

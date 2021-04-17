@@ -1,0 +1,26 @@
+Instructions 200, 201, 202,...
+
+Fixation - 10
+
+Locations response:
+Upper left: 20
+Lower left: 30
+Lower right: 40
+Upper right: 50
+
+Orientations response:
+0: 100
+-45: 101
+90: 106
+45: 107
+
+Stimulus (sum of Loc and Ori):
+Lower left 90: 136
+Upper fight -45: 151
+etc...
+
+PAS:
+1: 1
+2: 2
+3: 3
+4: 4
