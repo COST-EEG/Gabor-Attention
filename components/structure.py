@@ -138,6 +138,7 @@ def create_structure():
         lineWidth=0
         )
 
+    
     structure['cuelocation'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
         size=(0.01, 0.01),

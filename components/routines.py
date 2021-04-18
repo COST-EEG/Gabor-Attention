@@ -120,24 +120,16 @@ def display_stimulus(exp, loop, trial):
     cuecentral = exp['cuecentral']
     nocue = exp['nocue']
     cuelocation = exp['cuelocation']
-    cuepos = (trial['x'], trial['y'])
     cueupperleft = exp['cueupperleft']
     cueupperright = exp['cueupperright']
     cuelowerleft = exp['cuelowerleft']
     cuelowerright = exp['cuelowerright']
     cueDuration = exp['cueDur']
+
+    cuepos = (trial['x'], trial['y'])
     cuelocation.pos = cuepos
-
     conditionlist = (trial['condition'])
-    #File with Gabor placement
-    CONDITIONS_FILE = 'experiment_trials_cue.csv'
-    DATA = data.importConditions(CONDITIONS_FILE)
 
-#Gabor parameters
-    POSSIBLE_CUES = [(str(x['condition']),(x['x'], x['y'])) for x in DATA] 
-
-    gabor.ori = ori
-    gabor.pos = pos
     
 
     try:
@@ -168,13 +160,13 @@ def display_stimulus(exp, loop, trial):
         
         ###CUE CONDITIONS###
         if frames > fixationDuration:
-            if 'condition' in POSSIBLE_CUES == 'nocue':
+            if trial['condition'] == 'nocue':
                 nocue.draw()
-            elif 'condition' in POSSIBLE_CUES == 'nocue':
+            elif trial['condition'] == 'centralcue':
                 cuecentral.draw()
-            elif 'condition' in POSSIBLE_CUES == 'nocue':
+            elif trial['condition'] == 'locationcue':
                 cuelocation.draw()
-            elif 'condition' in POSSIBLE_CUES == 'nocue':
+            elif trial['condition'] == 'allcue':
                 cueupperleft.draw()
                 cueupperright.draw()
                 cuelowerleft.draw()
