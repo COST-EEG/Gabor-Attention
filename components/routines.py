@@ -5,8 +5,7 @@ Created on Thu Dec 10 16:48:00 2020
 @author: Marcin Koculak
 """
 import numpy as np
-
-from psychopy import core
+from psychopy import visual, core, event, monitors, data, gui
 
 from random import choice
 
@@ -118,9 +117,8 @@ def display_stimulus(exp, loop, trial):
     gabor.pos = pos
     
     
-    ###CUE###
     cuecentral = exp['cuecentral']
-    cueno = exp['cueno']
+    nocue = exp['nocue']
     cuelocation = exp['cuelocation']
     cuepos = (trial['x'], trial['y'])
     cueupperleft = exp['cueupperleft']
@@ -130,8 +128,17 @@ def display_stimulus(exp, loop, trial):
     cueDuration = exp['cueDur']
     cuelocation.pos = cuepos
 
-    conditionlist = list(trial['condition'])
-    cueDuration = get_frames(exp, cueDuration)
+    conditionlist = (trial['condition'])
+    #File with Gabor placement
+    CONDITIONS_FILE = 'experiment_trials_cue.csv'
+    DATA = data.importConditions(CONDITIONS_FILE)
+
+#Gabor parameters
+    POSSIBLE_CUES = [(str(x['condition']),(x['x'], x['y'])) for x in DATA] 
+
+    gabor.ori = ori
+    gabor.pos = pos
+    
 
     try:
         gabor.opacity = exp['trialOpacity'][exp['trialIter']]
@@ -143,6 +150,7 @@ def display_stimulus(exp, loop, trial):
     except KeyError:
         print("No experimentally set opacity")
 
+    cueDuration = get_frames(exp, cueDuration)
     stimulusDuration = get_frames(exp, gaborDuration)
 
 
@@ -159,28 +167,28 @@ def display_stimulus(exp, loop, trial):
         fix.draw()
         
         ###CUE CONDITIONS###
-        if conditionlist == 'nocue':
-            cueno.draw()
-        elif conditionlist == 'centralcue':
-            cuecentral.draw()
-        elif conditionlist == 'locationcue':
-            cuelocation.draw()
-        elif conditionlist == 'allcue':
-            cueupperleft.draw()
-            cueupperright.draw()
-            cuelowerleft.draw()
-            cuelowerright.draw()
+        if frames > fixationDuration:
+            if 'condition' in POSSIBLE_CUES == 'nocue':
+                nocue.draw()
+            elif 'condition' in POSSIBLE_CUES == 'nocue':
+                cuecentral.draw()
+            elif 'condition' in POSSIBLE_CUES == 'nocue':
+                cuelocation.draw()
+            elif 'condition' in POSSIBLE_CUES == 'nocue':
+                cueupperleft.draw()
+                cueupperright.draw()
+                cuelowerleft.draw()
+                cuelowerright.draw()
             
-
 
         if exp['EEG'] and fix_send:
             print('Fixation', end='')
             exp['set_data'](10)
             fix_send = False
 
-        if frames > fixationDuration + stimulusDuration:
+        if frames > fixationDuration + stimulusDuration + cueDuration:
             pass
-        elif frames > fixationDuration:
+        elif frames > fixationDuration + cueDuration:
             gabor.draw()
             if exp['EEG'] and stim_send:
                 print('Stim', end=' ')
@@ -190,7 +198,7 @@ def display_stimulus(exp, loop, trial):
 
         exp['win'].flip()
 
-        if frames > fixationDuration + stimulusDuration + postFixationDuration:
+        if frames > fixationDuration + stimulusDuration + postFixationDuration + cueDuration:
             continueRoutine = False
 
         frames += 1
@@ -202,11 +210,13 @@ def display_stimulus(exp, loop, trial):
 
     if type(loop).__name__ == 'TrialHandler':
         loop.addData('fixation_dur', fixationDuration)
+        loop.addData('cue_dur', cueDuration)
         loop.addData('stimulation_dur', stimulusDuration)
         loop.addData('post_fixation', postFixationDuration)
         loop.addData('opacity', gabor.opacity)
     elif type(loop).__name__ == 'StairHandler':
         loop.addOtherData('fixation_dur', fixationDuration)
+        loop.addData('cue_dur', cueDuration)
         loop.addOtherData('stimulation_dur', stimulusDuration)
         loop.addOtherData('post_fixation', postFixationDuration)
         loop.addOtherData('opacity', gabor.opacity)

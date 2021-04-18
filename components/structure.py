@@ -238,9 +238,9 @@ def create_structure():
 
     structure['fixationShape'] = fixation_shape
     structure['fixationDur'] = fixation_dur
-    structure['gaborDur'] = gabor_dur
     structure['postFixationDur'] = post_fixation_dur
     structure['cueDur'] = cue_dur
+    structure['gaborDur'] = gabor_dur
     
     structure['blockLength'] = block_length
 
