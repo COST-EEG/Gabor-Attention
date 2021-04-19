@@ -128,6 +128,7 @@ def display_stimulus(exp, loop, trial):
 
     cuepos = (trial['x'], trial['y'])
     cuelocation.pos = cuepos
+
     conditionlist = (trial['condition'])
 
     
@@ -159,14 +160,14 @@ def display_stimulus(exp, loop, trial):
         fix.draw()
         
         ###CUE CONDITIONS###
-        if frames > fixationDuration:
-            if trial['condition'] == 'nocue':
+        for condition in trial['condition']:
+            if condition == 'nocue':
                 nocue.draw()
-            elif trial['condition'] == 'centralcue':
+            elif condition == 'centralcue':
                 cuecentral.draw()
-            elif trial['condition'] == 'locationcue':
+            elif condition == 'locationcue':
                 cuelocation.draw()
-            elif trial['condition'] == 'allcue':
+            elif condition == 'allcue':
                 cueupperleft.draw()
                 cueupperright.draw()
                 cuelowerleft.draw()
