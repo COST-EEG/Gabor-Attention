@@ -101,7 +101,7 @@ def display_stimulus(exp, loop, trial):
     elif exp['fixationShape'] == 'dot':
         fix = exp['dot']
 
-    fixationJitter = np.random.choice(np.arange(100,1001,100))
+    fixationJitter = np.random.choice(np.arange(100, 1001, 100))
     fixationDuration = get_frames(exp, exp['fixationDur'] + fixationJitter)
     postFixationDuration = get_frames(exp, exp['postFixationDur'])
 
@@ -115,8 +115,8 @@ def display_stimulus(exp, loop, trial):
 
     gabor.ori = ori
     gabor.pos = pos
-    
-    
+
+
     cuecentral = exp['cuecentral']
     nocue = exp['nocue']
     cuelocation = exp['cuelocation']
@@ -125,13 +125,14 @@ def display_stimulus(exp, loop, trial):
     cuelowerleft = exp['cuelowerleft']
     cuelowerright = exp['cuelowerright']
     cueDuration = exp['cueDur']
+    cueISI = exp['cueISI']
 
     cuepos = (trial['x'], trial['y'])
     cuelocation.pos = cuepos
 
     conditionlist = (trial['condition'])
 
-    
+
 
     try:
         gabor.opacity = exp['trialOpacity'][exp['trialIter']]
@@ -146,7 +147,6 @@ def display_stimulus(exp, loop, trial):
     cueDuration = get_frames(exp, cueDuration)
     stimulusDuration = get_frames(exp, gaborDuration)
 
-
     if gabor.opacity == 0.4:
         stim_trigger = exp['locationResponse']['responseCode'][str(pos)][0]*10 + exp['orientationResponse']['responseCode'][str(ori)][0] + 140
     else:
@@ -155,32 +155,38 @@ def display_stimulus(exp, loop, trial):
     continueRoutine = True
     frames = 0
 
+    print(trial['condition'])
+
     while continueRoutine:
 
-        fix.draw()
-        
-        ###CUE CONDITIONS###
-        if frames > fixationDuration and trial['condition'] == 'nocue':
-            nocue.draw()
-        elif frames > fixationDuration and trial['condition'] == 'centralcue':
-            cuecentral.draw()
-        elif frames > fixationDuration and trial['condition']  == 'locationcue':
-            cuelocation.draw()
-        elif frames > fixationDuration and trial['condition']  == 'allcue':
-            cueupperleft.draw()
-            cueupperright.draw()
-            cuelowerleft.draw()
-            cuelowerright.draw()
-            
+        ### CUE CONDITIONS ###
+        if frames > fixationDuration + cueDuration:
+            fix.draw()
+        elif frames > fixationDuration:
+            if trial['condition'] == 'nocue':
+                fix.draw()
+            elif trial['condition'] == 'centralcue':
+                cuecentral.draw()
+            elif trial['condition'] == 'locationcue':
+                cuelocation.draw()
+                fix.draw()
+            elif trial['condition'] == 'allcue':
+                cueupperleft.draw()
+                cueupperright.draw()
+                cuelowerleft.draw()
+                cuelowerright.draw()
+                fix.draw()
+        else:
+            fix.draw()
 
         if exp['EEG'] and fix_send:
             print('Fixation', end='')
             exp['set_data'](10)
             fix_send = False
 
-        if frames > fixationDuration + stimulusDuration + cueDuration:
+        if frames > fixationDuration + stimulusDuration + cueDuration + cueISI:
             pass
-        elif frames > fixationDuration + cueDuration:
+        elif frames > fixationDuration + cueDuration + cueISI:
             gabor.draw()
             if exp['EEG'] and stim_send:
                 print('Stim', end=' ')
@@ -232,6 +238,12 @@ def get_response(exp, loop, trial, respType=None):
     buttonBox = exp['buttonBox']
     buttonBox.clock.reset()
 
+    # Clear any responses recorded before this screen
+    buttonBox.poll_for_response()
+    while len(buttonBox.response_queue):
+        buttonBox.clear_response_queue()
+        buttonBox.poll_for_response()
+
     pressKey = []
     pressRT = []
     releaseKey = []
@@ -254,6 +266,7 @@ def get_response(exp, loop, trial, respType=None):
 
         buttonBox.poll_for_response()
         while len(buttonBox.response_queue):
+            print(buttonBox.response_queue)
             evt = buttonBox.get_next_response()
             if evt['key'] not in exp[respType]['keys']:
                 continue

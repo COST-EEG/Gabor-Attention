@@ -14,7 +14,7 @@ from psychopy.hardware import keyboard
 from os.path import join  # change it to Path module
 
 from .exp_settings import (staircase, expInfo, responseDevice, resultsFolder,
-                           fixation_shape, fixation_dur, gabor_dur, cue_dur,
+                           fixation_shape, fixation_dur, gabor_dur, cue_dur, cue_ISI,
                            post_fixation_dur, trial_num, block_length, attention,
                            locationResponse, orientationResponse, pasResponse,
                            EEG, stairSamples, performTraining, performStaircase,
@@ -138,10 +138,9 @@ def create_structure():
         lineWidth=0
         )
 
-    
     structure['cuelocation'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
+        size=(10, 10), units='pix',
         ori=0, pos=(0, 0),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
@@ -149,40 +148,40 @@ def create_structure():
 
     structure['cuecentral'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
+        size=(10, 10), units='pix',
         ori=0, pos=(0, 0),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
         opacity=1, depth=0.0, interpolate=True)
-        
+
     structure['cueupperleft'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
-        ori=0, pos=(-77,77),
+        size=(10, 10), units='pix',
+        ori=0, pos=(-77, 77),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
         opacity=1, depth=0.0, interpolate=True)
 
     structure['cueupperright'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
-        ori=0, pos=(77,77),
+        size=(10, 10), units='pix',
+        ori=0, pos=(77, 77),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
         opacity=1, depth=0.0, interpolate=True)
 
     structure['cuelowerleft'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
-        ori=0, pos=(-77,-77),
+        size=(10, 10), units='pix',
+        ori=0, pos=(-77, -77),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
         opacity=1, depth=0.0, interpolate=True)
-        
+
     structure['cuelowerright'] = visual.ShapeStim(
         win=structure['win'], name='polygon', vertices='star7',
-        size=(0.01, 0.01),
-        ori=0, pos=(77,-77),
+        size=(10, 10), units='pix',
+        ori=0, pos=(77, -77),
         lineWidth=0.01, lineColor='black', lineColorSpace='rgb',
         fillColor='black', fillColorSpace='rgb',
         opacity=1, depth=0.0, interpolate=True)
@@ -241,6 +240,7 @@ def create_structure():
     structure['fixationDur'] = fixation_dur
     structure['postFixationDur'] = post_fixation_dur
     structure['cueDur'] = cue_dur
+    structure['cueISI'] = cue_ISI
     structure['gaborDur'] = gabor_dur
     
     structure['blockLength'] = block_length
@@ -274,7 +274,7 @@ def create_structure():
     
     structure['trials_file'] =  join('materials', 'experiment_trials_cue.csv')
     structure['experimentConditions'] = data.importConditions(structure['trials_file'])
-    structure['experimentTrials'] = data.TrialHandler(structure['experimentConditions'], nReps=trial_num/256)
+    structure['experimentTrials'] = data.TrialHandler(structure['experimentConditions'], nReps=trial_num/64)
     structure['data'].addLoop(structure['experimentTrials'])
     
 

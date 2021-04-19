@@ -33,6 +33,7 @@ fixation_shape = 'cross'
 
 # Timings of displayed elements in miliseconds
 cue_dur = 100
+cue_ISI = 400
 fixation_dur = 2000
 gabor_dur = 800
 post_fixation_dur = 1200
