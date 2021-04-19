@@ -160,17 +160,17 @@ def display_stimulus(exp, loop, trial):
         fix.draw()
         
         ###CUE CONDITIONS###
-            if frames > fixationDuration and trial['condition'] == 'nocue':
-                nocue.draw()
-            elif frames > fixationDuration and trial['condition'] == 'centralcue':
-                cuecentral.draw()
-            elif frames > fixationDuration and trial['condition']  == 'locationcue':
-                cuelocation.draw()
-            elif frames > fixationDuration and trial['condition']  == 'allcue':
-                cueupperleft.draw()
-                cueupperright.draw()
-                cuelowerleft.draw()
-                cuelowerright.draw()
+        if frames > fixationDuration and trial['condition'] == 'nocue':
+            nocue.draw()
+        elif frames > fixationDuration and trial['condition'] == 'centralcue':
+            cuecentral.draw()
+        elif frames > fixationDuration and trial['condition']  == 'locationcue':
+            cuelocation.draw()
+        elif frames > fixationDuration and trial['condition']  == 'allcue':
+            cueupperleft.draw()
+            cueupperright.draw()
+            cuelowerleft.draw()
+            cuelowerright.draw()
             
 
         if exp['EEG'] and fix_send:
@@ -220,6 +220,7 @@ def create_stair_trial(variable):
     trial['orientation'] = choice([-45, 0, 45, 90])
     trial['x'] = choice([-77, 77])
     trial['y'] = choice([-77, 77])
+    trial['condition'] = choice(['nocue', 'locationcue', 'centralcue', 'allcue'])
     return trial
 
 
