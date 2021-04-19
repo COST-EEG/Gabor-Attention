@@ -160,14 +160,13 @@ def display_stimulus(exp, loop, trial):
         fix.draw()
         
         ###CUE CONDITIONS###
-        for condition in trial['condition']:
-            if condition == 'nocue':
+            if frames > fixationDuration and trial['condition'] == 'nocue':
                 nocue.draw()
-            elif condition == 'centralcue':
+            elif frames > fixationDuration and trial['condition'] == 'centralcue':
                 cuecentral.draw()
-            elif condition == 'locationcue':
+            elif frames > fixationDuration and trial['condition']  == 'locationcue':
                 cuelocation.draw()
-            elif condition == 'allcue':
+            elif frames > fixationDuration and trial['condition']  == 'allcue':
                 cueupperleft.draw()
                 cueupperright.draw()
                 cuelowerleft.draw()
