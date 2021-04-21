@@ -196,7 +196,7 @@ def display_stimulus(exp, loop, trial):
 
         exp['win'].flip()
 
-        if frames > fixationDuration + stimulusDuration + postFixationDuration + cueDuration:
+        if frames > fixationDuration + stimulusDuration + postFixationDuration + cueDuration + cueISI:
             continueRoutine = False
 
         frames += 1
