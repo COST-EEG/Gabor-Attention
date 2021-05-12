@@ -145,6 +145,7 @@ def display_stimulus(exp, loop, trial):
         print("No experimentally set opacity")
 
     cueDuration = get_frames(exp, cueDuration)
+    cueISI = get_frames(exp, cueISI)
     stimulusDuration = get_frames(exp, gaborDuration)
 
     if gabor.opacity == 0.4:
@@ -165,10 +166,13 @@ def display_stimulus(exp, loop, trial):
         elif frames > fixationDuration:
             if trial['condition'] == 'nocue':
                 fix.draw()
+                trigger = 600
             elif trial['condition'] == 'centralcue':
                 cuecentral.draw()
+                trigger = 700
             elif trial['condition'] == 'locationcue':
                 cuelocation.draw()
+                trigger = 800
                 fix.draw()
             elif trial['condition'] == 'allcue':
                 cueupperleft.draw()
@@ -176,6 +180,7 @@ def display_stimulus(exp, loop, trial):
                 cuelowerleft.draw()
                 cuelowerright.draw()
                 fix.draw()
+                trigger = 900
         else:
             fix.draw()
 
@@ -226,7 +231,7 @@ def create_stair_trial(variable):
     trial['orientation'] = choice([-45, 0, 45, 90])
     trial['x'] = choice([-77, 77])
     trial['y'] = choice([-77, 77])
-    trial['condition'] = choice(['nocue', 'locationcue', 'centralcue', 'allcue'])
+    trial['condition'] = choice(['nocue', 'centralcue'])
     return trial
 
 

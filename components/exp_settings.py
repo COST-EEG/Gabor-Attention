@@ -9,7 +9,7 @@ import numpy as np
 
 # Turn the main parts of the experiments on/off
 performTraining = False
-performStaircase = False
+performStaircase = True
 performSession = True
 
 EEG = True
@@ -34,8 +34,8 @@ fixation_shape = 'cross'
 # Timings of displayed elements in miliseconds
 cue_dur = 100
 cue_ISI = 400
-fixation_dur = 2000
-gabor_dur = 800
+fixation_dur = 1500
+gabor_dur = 33
 post_fixation_dur = 1200
 
 
@@ -99,8 +99,8 @@ staircase = {
 # the final opacity level.
 stairSamples = 40
 
-# How many trials in the test session (only increments of 16)
-trial_num = 256
+# How many trials in the test session (only increments of 64)
+trial_num = 384
 
 # After how many trials there should be a break
 block_length = 16

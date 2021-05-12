@@ -106,8 +106,8 @@ if exp['performSession']:
         print('\n', f'Setting the opacity based on preset value to {opacity}', sep='')
 
     exp['finalOpacity'] = opacity
-    exp['trialOpacity'] = [opacity]*256
-    #np.random.shuffle(exp['trialOpacity'])
+    exp['trialOpacity'] = [opacity]*384
+    np.random.shuffle(exp['trialOpacity'])
     exp['trialIter'] = 0
 
     timer = core.Clock()

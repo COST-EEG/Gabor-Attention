@@ -267,15 +267,15 @@ def create_structure():
     structure['trainingTrials'] = data.TrialHandler(structure['trainingConditions'], nReps=1)
     structure['data'].addLoop(structure['trainingTrials'])
 
-    #structure['trials_file'] =  join('materials', 'experiment_trials.csv')
-    #structure['experimentConditions'] = data.importConditions(structure['trials_file'])
-    #structure['experimentTrials'] = data.TrialHandler(structure['experimentConditions'], nReps=trial_num/16)
-    #structure['data'].addLoop(structure['experimentTrials'])
-    
-    structure['trials_file'] =  join('materials', 'experiment_trials_cue.csv')
+    structure['trials_file'] =  join('materials', 'experiment_trials.csv')
     structure['experimentConditions'] = data.importConditions(structure['trials_file'])
     structure['experimentTrials'] = data.TrialHandler(structure['experimentConditions'], nReps=trial_num/64)
     structure['data'].addLoop(structure['experimentTrials'])
+    
+    #structure['trials_file'] =  join('materials', 'experiment_trials.csv')
+    #structure['experimentConditions'] = data.importConditions(structure['trials_file'])
+    #structure['experimentTrials'] = data.TrialHandler(structure['experimentConditions'], nReps=trial_num/64)
+    #structure['data'].addLoop(structure['experimentTrials'])
     
 
     structure['locationResponse'] = locationResponse
