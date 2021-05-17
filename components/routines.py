@@ -95,6 +95,7 @@ def display_stimulus(exp, loop, trial):
 
     fix_send = True
     stim_send = True
+    cue_send = True
 
     if exp['fixationShape'] == 'cross':
         fix = exp['fixationCross']
@@ -166,13 +167,13 @@ def display_stimulus(exp, loop, trial):
         elif frames > fixationDuration:
             if trial['condition'] == 'nocue':
                 fix.draw()
-                trigger = 600
+                cue_trigger = 600
             elif trial['condition'] == 'centralcue':
                 cuecentral.draw()
-                trigger = 700
+                cue_trigger = 700
             elif trial['condition'] == 'locationcue':
                 cuelocation.draw()
-                trigger = 800
+                cue_trigger = 800
                 fix.draw()
             elif trial['condition'] == 'allcue':
                 cueupperleft.draw()
@@ -180,7 +181,12 @@ def display_stimulus(exp, loop, trial):
                 cuelowerleft.draw()
                 cuelowerright.draw()
                 fix.draw()
-                trigger = 900
+                cue_trigger = 900
+                if exp['attention'] and cue_send:
+                    print('Cue', end=' ')
+                    exp['set_data'](cue_trigger)
+                    print('\t', end='')
+                    cue_send = False
         else:
             fix.draw()
 
@@ -219,7 +225,7 @@ def display_stimulus(exp, loop, trial):
         loop.addData('opacity', gabor.opacity)
     elif type(loop).__name__ == 'StairHandler':
         loop.addOtherData('fixation_dur', fixationDuration)
-        loop.addData('cue_dur', cueDuration)
+        loop.addOtherData('cue_dur', cueDuration)
         loop.addOtherData('stimulation_dur', stimulusDuration)
         loop.addOtherData('post_fixation', postFixationDuration)
         loop.addOtherData('opacity', gabor.opacity)

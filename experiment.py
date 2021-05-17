@@ -18,36 +18,6 @@ display_instruction_screen(exp, image=exp['location_instruction'], trigger=202)
 display_instruction_screen(exp, image=exp['orientation_instruction'], trigger=203)
 display_instruction_screen(exp, image=exp['pas_instruction'], trigger=204)
 
-##################
-###  TRAINING  ###
-##################
-
-if exp['performTraining']:
-
-    loop = exp['trainingTrials']
-    for trial in loop:
-        loop.addData('name', 'session')
-        loop.addData('globalTime', exp['globalClock'].getTime())
-
-        print('')
-        print(f'Block {loop.thisRepN}:\t', end='')
-        print(f'Trial {loop.thisTrialN}:\t', end='')
-
-        exp['trainingClock'].reset()
-
-        display_stimulus(exp, loop, trial)
-
-        #display_blank(exp, loop, trial, name='postStim')
-
-        get_response(exp, loop, trial, respType='locationResponse')
-
-        get_response(exp, loop, trial, respType='orientationResponse')
-
-        get_response(exp, loop, trial, respType='pasResponse')
-        exp['data'].nextEntry()
-
-        print(f'T-trial {round(exp["trainingClock"].getTime(),2)}s', end='\t')
-
 
 ###################
 ###  STAIRCASE  ###
@@ -83,6 +53,36 @@ if exp['performStaircase']:
     samples = exp["stairSamples"]
     print(f'Accuracy of position response for the last {samples} trials: {np.mean(posCorr[-samples:])}')
     print(f'Accuracy of orientation response for the last {samples} trials: {np.mean(oriCorr[-samples:])}')
+
+##################
+###  TRAINING  ###
+##################
+
+if exp['performTraining']:
+
+    loop = exp['trainingTrials']
+    for trial in loop:
+        loop.addData('name', 'session')
+        loop.addData('globalTime', exp['globalClock'].getTime())
+
+        print('')
+        print(f'Block {loop.thisRepN}:\t', end='')
+        print(f'Trial {loop.thisTrialN}:\t', end='')
+
+        exp['trainingClock'].reset()
+
+        display_stimulus(exp, loop, trial)
+
+        #display_blank(exp, loop, trial, name='postStim')
+
+        get_response(exp, loop, trial, respType='locationResponse')
+
+        get_response(exp, loop, trial, respType='orientationResponse')
+
+        get_response(exp, loop, trial, respType='pasResponse')
+        exp['data'].nextEntry()
+
+        print(f'T-trial {round(exp["trainingClock"].getTime(),2)}s', end='\t')
 
 
 ######################
