@@ -9,7 +9,7 @@ import numpy as np
 
 # Turn the main parts of the experiments on/off
 performTraining = False
-performStaircase = True
+performStaircase = False
 performSession = True
 
 EEG = True
