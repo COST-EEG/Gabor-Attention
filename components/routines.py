@@ -167,13 +167,13 @@ def display_stimulus(exp, loop, trial):
         elif frames > fixationDuration:
             if trial['condition'] == 'nocue':
                 fix.draw()
-                cue_trigger = 60
+                cue_trigger = 61
             elif trial['condition'] == 'centralcue':
                 cuecentral.draw()
-                cue_trigger = 70
+                cue_trigger = 62
             elif trial['condition'] == 'locationcue':
                 cuelocation.draw()
-                cue_trigger = 80
+                cue_trigger = 63
                 fix.draw()
             elif trial['condition'] == 'allcue':
                 cueupperleft.draw()
@@ -181,12 +181,14 @@ def display_stimulus(exp, loop, trial):
                 cuelowerleft.draw()
                 cuelowerright.draw()
                 fix.draw()
-                cue_trigger = 90
+                cue_trigger = 64
                 if exp['EEG'] and cue_send:
                     print('Cue', end=' ')
                     exp['set_data'](cue_trigger)
                     print('\t', end='')
                     cue_send = False
+        else:
+            fix.draw()
             
 
             

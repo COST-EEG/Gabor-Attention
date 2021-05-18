@@ -1,7 +1,7 @@
 import numpy as np
 
 from psychopy import core, gui
-
+(
 from components.structure import create_structure, setup_EEG, save_json
 from components.routines import (display_instruction_screen, display_stimulus,
                                  create_stair_trial, get_response,
