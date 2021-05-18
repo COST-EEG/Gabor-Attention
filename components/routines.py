@@ -182,14 +182,15 @@ def display_stimulus(exp, loop, trial):
                 cuelowerright.draw()
                 fix.draw()
                 cue_trigger = 64
-                if exp['EEG'] and cue_send:
-                    print('Cue', end=' ')
-                    exp['set_data'](cue_trigger)
-                    print('\t', end='')
-                    cue_send = False
+
+            if exp['EEG'] and cue_send:
+                print('Cue', end=' ')
+                exp['set_data'](cue_trigger)
+                print('\t', end='')
+                cue_send = False
         else:
             fix.draw()
-            
+
 
             
 
