@@ -182,13 +182,15 @@ def display_stimulus(exp, loop, trial):
                 cuelowerright.draw()
                 fix.draw()
                 cue_trigger = 900
-                if exp['attention'] and cue_send:
-                    print('Cue', end=' ')
-                    exp['set_data'](cue_trigger)
-                    print('\t', end='')
-                    cue_send = False
         else:
             fix.draw()
+            
+            if exp['EEG'] and cue_send:
+                print('Cue', end=' ')
+                exp['set_data'](cue_trigger)
+                print('\t', end='')
+                cue_send = False
+            
 
         if exp['EEG'] and fix_send:
             print('Fixation', end='')
