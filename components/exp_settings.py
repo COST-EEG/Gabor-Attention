@@ -8,8 +8,8 @@ from os.path import join  # change it to Path module
 import numpy as np
 
 # Turn the main parts of the experiments on/off
-performTraining = False
-performStaircase = False
+performTraining = True
+performStaircase = True
 performSession = True
 
 EEG = True
